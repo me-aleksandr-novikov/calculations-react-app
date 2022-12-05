@@ -1,45 +1,67 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import './TableDate.css';
+import { ExportReactCSV } from '../ExportReactCSV/ExportReactCSV'
 
 const TableDate = (props) => {
-    return (
-        <div>
-            <div className='bodyDate'>
-        <Button
-          className='btn'
-          variant="success"
-        //onClick={saveXLS}
-        >
-          Скачать Exel
-        </Button>{' '}
+  let sum = 0;
+  props.results.map(item => {sum = sum + Number(item['Стоимость'])});
+  let vacation = sum/2*0.05;
+  let salary = (sum - sum*0.05)/2;
+  return (
+    <div>
+      <div className='bodyDate'>
 
+        <ExportReactCSV 
+          csvData={
+            [...[{'Общая сумма': sum, 'Отпускные 5%': vacation ,'Зарплата': salary, 'Адресов': props.results.length}],...props.results]}
+          fileName={`Выгрузка по ${props.Empl.Emp} с ${props.Empl.dateStart} по ${props.Empl.dateEnd}`} />
         <br />
 
-        <table className="table">
+        <Table striped bordered responsive hover variant="dark" className="table">
+          <thead className='SumTable'>
+            <tr>
+              <th>Найдено строк</th>
+              <th>Итого</th>
+              <th>Отпускные 5%</th>
+              <th>Зарплата</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key={1}>
+              <td>{props.results.length}</td>
+              <td>{new Intl.NumberFormat('ru-RU').format(sum)}</td>
+              <td>{new Intl.NumberFormat('ru-RU').format(vacation)}</td>
+              <td>{new Intl.NumberFormat('ru-RU').format(salary)}</td>
+            </tr>
+          </tbody>
+        </Table>
+        
+        <br />
+
+        <Table striped bordered hover variant="dark" className="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>E-mail</th>
-              <th>Phone</th>
+              <th>№ заказа в магазине</th>
+              <th>Адрес</th>
+              <th>Время работы</th>
+              <th>Стоимость</th>
             </tr>
           </thead>
           <tbody>
             {props.results.map(item => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
+              <tr key={item['№ заказа в магазине']}>
+                <td>{item['№ заказа в магазине']}<br/>{item['№ заказа в Руках']}</td>
+                <td>{item['Адрес']}</td>
+                <td>{item['Время работы']}</td>
+                <td>{item['Стоимость']}</td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
-        </div>
-    );
+    </div >
+  );
 };
 
 export default TableDate;

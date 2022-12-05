@@ -1,5 +1,4 @@
 import React from 'react';
-import Xlsx from 'xlsx';
 import Papa from 'papaparse';
 import { useState } from "react";
 import { Button } from 'react-bootstrap';
@@ -19,7 +18,7 @@ const Header = (props) => {
       header: true,
       skipEmptyLines: true,
       complete: function (results) {
-
+        console.log(results.data.map(e => e['Мастер']))
         results = results.data.filter((obj) => {
           return Object.keys(obj).some((key) => {
             return (key === 'Статус' && obj[key] === 'Выполнен');
@@ -27,7 +26,7 @@ const Header = (props) => {
             && (obj['Мастер'] === Emp)
         });
         
-        props.updateData(results); //выкидываем наверх
+        props.updateData(results, Emp, dateStart, dateEnd); //выкидываем наверх
 
       }
     })
@@ -75,6 +74,7 @@ const Header = (props) => {
               <option value="Семенов Владимир">Семенов Владимир</option>
               <option value="Колесник Алексей">Колесник Алексей</option>
               <option value="Чугунов Анатолий">Чугунов Анатолий</option>
+              <option value="Коваленко Иван">Коваленко Иван</option>
             </select>
 
             <br />
