@@ -1,7 +1,8 @@
+import './reset.css'
 import Header from "./components/Header/Header";
-import './index.css'
 import { useState } from "react";
-import  TableDate  from './components/TableDate/TableDate.jsx' 
+import TableDate from './components/TableDate/TableDate.jsx'
+import './index.css'
 
 function App() {
 
@@ -9,21 +10,21 @@ function App() {
   const [Empl, setEmpl] = useState({});
   const updateData = (value, Emp, dateStart, dateEnd) => {
     setResult(value);
-    setEmpl({Emp, dateStart, dateEnd});
+    setEmpl({ Emp, dateStart, dateEnd });
   }
-  
-  if(results && results.length){
-  return (
-    <div className="App">
-      <Header updateData = {updateData}/>
-      <TableDate results = {results} Empl = {Empl}/>
-    </div>
-  );
+
+  if (results && results.length) {
+    return (
+        <div className="App">
+          <Header updateData={updateData} />
+          <TableDate results={results} Empl={Empl} />
+        </div>
+    );
   } else {
     return (
-      <div className="App">
-        <Header updateData = {updateData}/>
-      </div>
+        <div className="App">
+          <Header updateData={updateData} />
+        </div>
     );
   }
 }

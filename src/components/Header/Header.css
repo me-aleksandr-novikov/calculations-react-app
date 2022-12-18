@@ -1,36 +1,33 @@
-.headerDate{
-    display: flex;
+*{
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    padding: 5px;
+    min-width: fit-content;
+    /* color: black; */
 }
 
-.fileIn {
-    margin-top: 5px;
-    background-color: rgb(59, 57, 28);
+.fc{
+    padding: 10px;
+    margin: 5px;
+    min-width: 350px;
+}
+#date{
+    min-width: 130px;
 }
 
-.submit{
-    display:block;
-    width:100%;
-    margin-top: 5px;
-}
-
-.btn{
-    margin-top: 5px;
+.btn {
     width: 100%;
+    margin: 5px 0;
+}
+
+.selectEmployees{
+    width: 100%;
+    margin: 5px 0;
 }
 
 .dateBlock{
     margin-top: 5px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    min-width: max-content;
 }
-
-.selectEmployees{
-    margin-top: 5px;
-    width: 100%;   
-}
-

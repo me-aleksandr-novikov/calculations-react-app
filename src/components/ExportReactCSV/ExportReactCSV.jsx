@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { CSVLink } from 'react-csv';
@@ -17,7 +17,7 @@ export const ExportReactCSV = ({csvData, fileName}) => {
         FileSaver.saveAs(data, fileName + fileExtension);
     }
     return (
-        <Button className='btn' variant="success" onClick={(e) => exportToCSV(csvData,fileName)}>
+        <Button className='btn' color="success" size="large" variant="contained" onClick={(e) => exportToCSV(csvData,fileName)}>
             <CSVLink className='btn-csv' data={csvData} filename={fileName}>Выгрузить в Exel</CSVLink>
         </Button>
     )
